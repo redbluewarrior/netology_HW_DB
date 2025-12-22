@@ -1,10 +1,8 @@
 -- Task 2
 
 --1
-SELECT name, MAX(duration) FROM tracks
-GROUP BY name
-ORDER BY MAX(duration) DESC
-LIMIT 1;
+SELECT name, duration FROM tracks
+WHERE duration = (SELECT MAX(duration) FROM tracks)
 
 --2
 SELECT name FROM tracks
@@ -89,3 +87,4 @@ HAVING COUNT(t.id) = (SELECT MIN(track_count) FROM ( SELECT COUNT(*) AS track_co
         GROUP BY albumid
     )
 );
+
